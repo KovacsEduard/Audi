@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0B0C0E">
+<title>AUDI MODELLARCHÍVUM — RS6, Q5, A5 | Kovács Eduárd</title>
+<meta name="description" content="A legújabb benzines és dízel Audi modellek egy oldalon: RS6 Avant Performance, Q5 és A5. Készítette: Kovács Eduárd.">
+
+<!-- Betűtípusok: Archivo (címek) + IBM Plex Mono (adatok) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ==========================================================
+   1. ALAPVÁLTOZÓK ÉS RESET
+   ========================================================== */
+:root{
+  --bg:       #0B0C0E;
+  --felulet:  #101318;
+  --felulet2: #0D0F13;
+  --vonal:    #262931;
+  --vonal2:   #3F434D;
+  --tinta:    #F2F0EB;
+  --szoveg2:  #B9BEC6;
+  --szoveg3:  #8B9099;
+  --szoveg4:  #70757E;
+  --voros:    #E4002B;
+  --mono:     'IBM Plex Mono', Consolas, monospace;
+  --sans:     'Archivo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --oldal:    clamp(18px, 4vw, 44px);
+  --maxw:     1280px;
+}
+
+*{ margin:0; padding:0; box-sizing:border-box; }
+html{ scroll-behavior:smooth; color-scheme:dark; }
+body{
+  background:var(--bg);
+  color:var(--tinta);
+  font:400 16px/1.65 var(--sans);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:clip;
+}
+::selection{ background:var(--voros); color:#fff; }
+a{ color:inherit; }
+a:focus-visible, button:focus-visible{ outline:2px solid var(--voros); outline-offset:3px; }
+section[id]{ scroll-margin-top:84px; }  /* a fix navbar ne takarja a célpontot */
+
+/* ==========================================================
+   2. NAVBÁR
+   ========================================================== */
+.nav{
+  position:fixed; top:0; left:0; right:0; z-index:50;
+  background:rgba(11,12,14,.84);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--vonal);
+}
+.nav-belso{
+  max-width:var(--maxw); margin:0 auto; height:64px;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 var(--oldal);
+}
+.logo{ display:flex; align-items:center; gap:12px; text-decoration:none; }
+.logo .gyuruk circle{ fill:none; stroke:#C9CDD4; stroke-width:2; transition:stroke .25s; }
+.logo:hover .gyuruk circle{ stroke:#fff; }
+.logo-szoveg{
+  font:700 12px var(--sans); font-stretch:125%;
+  letter-spacing:.18em; color:var(--tinta); white-space:nowrap;
+}
+.nav-jobb{ display:flex; align-items:center; gap:18px; }
+.nav-links{ display:flex; gap:clamp(16px, 2.2vw, 32px); }
+.nav-links a{
+  position:relative; text-decoration:none;
+  font:600 11.5px var(--mono); letter-spacing:.14em; color:#C9CDD4;
+  padding:8px 2px; transition:color .2s; white-space:nowrap;
+}
+.nav-links a i{ font-style:normal; color:var(--voros); margin-right:7px; }
+.nav-links a::after{
+  content:""; position:absolute; left:0; bottom:2px; width:100%; height:1px;
+  background:var(--voros); transform:scaleX(0); transform-origin:left; transition:transform .3s;
+}
+.nav-links a:hover{ color:#fff; }
+.nav-links a:hover::after{ transform:scaleX(1); }
+
+/* hamburger gomb (csak mobilon látszik) */
+.hamburger{
+  display:none; flex-direction:column; justify-content:center; gap:7px;
+  width:44px; height:44px; background:transparent;
+  border:1px solid var(--vonal); border-radius:4px; cursor:pointer;
+}
+.hamburger span{
+  display:block; width:20px; height:2px; background:var(--tinta);
+  margin:0 auto; transition:transform .3s ease;
+}
+.hamburger.aktiv span:first-child{ transform:translateY(4.5px) rotate(45deg); }
+.hamburger.aktiv span:last-child{  transform:translateY(-4.5px) rotate(-45deg); }
+
+/* ==========================================================
+   3. HERO
+   ========================================================== */
+.hero{
+  min-height:100vh; min-height:100svh;
+  display:flex; flex-direction:column;
+  background-image:
+    linear-gradient(#14161B 1px, transparent 1px),
+    linear-gradient(90deg, #14161B 1px, transparent 1px);
+  background-size:64px 64px;
+}
+.hero-teto{
+  flex:1; max-width:var(--maxw); width:100%; margin:0 auto;
+  display:flex; flex-direction:column; justify-content:center;
+  padding:clamp(80px, 12vh, 120px) var(--oldal) clamp(40px, 7vh, 72px);
+}
+.kicker{ font:600 11px var(--mono); letter-spacing:.24em; color:var(--szoveg3); }
+.kicker .v{ color:var(--voros); margin:0 8px; }
+h1{
+  margin-top:22px;
+  font-weight:850; font-stretch:125%;
+  font-size:clamp(2.1rem, 8vw, 7.2rem);
+  line-height:.96; letter-spacing:-.01em;
+}
+.h1-sor{ display:block; }
+.voros-sor{ color:var(--voros); }
+.hero-vezeto{
+  margin-top:clamp(24px, 4vh, 44px);
+  display:flex; gap:clamp(28px, 4vw, 56px); align-items:flex-end;
+}
+.hero-szoveg{ flex:1; max-width:58ch; color:var(--szoveg2); font-size:16.5px; }
+.hero-akciok{ display:flex; gap:12px; flex-wrap:wrap; }
+
+.gomb{
+  display:inline-flex; align-items:center; gap:12px;
+  font:600 12px var(--mono); letter-spacing:.14em; text-transform:uppercase;
+  padding:16px 24px; text-decoration:none; cursor:pointer;
+  border:1px solid transparent; transition:background .25s, color .25s, border-color .25s;
+}
+.gomb svg{ width:16px; height:12px; fill:none; stroke:currentColor; stroke-width:1.6; }
+.gomb-elso{ background:var(--voros); color:#fff; }
+.gomb-elso:hover{ background:var(--tinta); color:#0B0C0E; }
+.gomb-masodik{ border-color:var(--vonal2); color:var(--tinta); }
+.gomb-masodik:hover{ border-color:var(--voros); }
+
+/* futószalag a hero alján */
+.futo-sav{
+  overflow:hidden; border-top:1px solid var(--vonal);
+  border-bottom:1px solid var(--vonal); background:var(--felulet2);
+  padding:13px 0;
+}
+.futo-tartalom{ display:flex; width:max-content; animation:mozgas 30s linear infinite; }
+.futo-sav:hover .futo-tartalom{ animation-play-state:paused; }
+.futo-csoport{ display:flex; align-items:center; gap:34px; padding-right:34px; }
+.futo-csoport span{
+  font:500 11.5px var(--mono); letter-spacing:.18em;
+  color:#B4B9C0; text-transform:uppercase; white-space:nowrap;
+}
+.futo-csoport b{ color:var(--voros); font-weight:600; }
+@keyframes mozgas{ to{ transform:translateX(-50%); } }
+
+/* ==========================================================
+   4. MODELL SZEKCIÓK + KÁRTYÁK
+   ========================================================== */
+.modell{
+  max-width:var(--maxw); margin:0 auto;
+  padding:clamp(64px, 9vh, 110px) var(--oldal);
+}
+.modell-fejlec{
+  display:flex; gap:clamp(18px, 3vw, 34px); align-items:flex-start;
+  border-top:1px solid var(--vonal); padding-top:26px;
+  margin-bottom:clamp(26px, 4vw, 40px);
+}
+.sorszam{ font:600 12px var(--mono); color:var(--voros); letter-spacing:.2em; padding-top:10px; }
+.modell-cim h2{
+  font-weight:800; font-stretch:120%;
+  font-size:clamp(1.8rem, 3.8vw, 3.4rem); line-height:1.04; letter-spacing:-.01em;
+}
+.modell-cim em{ font-style:normal; font-weight:300; color:#AEB3BA; }
+.modell-cim p{ margin-top:10px; color:var(--szoveg3); font-size:15px; }
+.fejlec-cimke{
+  margin-left:auto; padding-top:12px; white-space:nowrap;
+  font:600 10px var(--mono); letter-spacing:.2em; color:var(--szoveg4);
+}
+
+.kartya{
+  border:1px solid var(--vonal); background:var(--felulet);
+  border-radius:6px; overflow:hidden;
+  display:grid; grid-template-columns:1.22fr 1fr;
+  transition:border-color .3s;
+}
+.kartya:hover{ border-color:var(--vonal2); }
+.forditott .kartya{ grid-template-columns:1fr 1.22fr; }
+.forditott .abra-oldal{ order:2; }
+.forditott .adat-oldal{ border-left:0; border-right:1px solid var(--vonal); }
+
+/* képes oldal: rácsháló + sarokfeliratok + a fotó */
+.abra-oldal{
+  position:relative; padding:clamp(26px, 3.5vw, 46px);
+  background-image:
+    linear-gradient(#14171D 1px, transparent 1px),
+    linear-gradient(90deg, #14171D 1px, transparent 1px);
+  background-size:56px 56px;
+}
+.sarok-fel, .sarok-xy{
+  position:absolute; top:20px;
+  font:600 10px var(--mono); letter-spacing:.18em; color:var(--szoveg4);
+}
+.sarok-fel{ left:22px; }
+.sarok-xy{ right:22px; color:var(--voros); }
+.sarok-al{ margin-top:20px; font:500 10px var(--mono); letter-spacing:.14em; color:var(--szoveg4); }
+
+/* --- a fotó + a helykitöltő, amíg a kép töltődik --- */
+.kep-keret{ border:1px solid var(--vonal); border-radius:6px; overflow:hidden; }
+.kep-hely{
+  aspect-ratio:3/2; display:flex; flex-direction:column; gap:12px;
+  align-items:center; justify-content:center; text-align:center;
+  background-image:
+    linear-gradient(#14171D 1px, transparent 1px),
+    linear-gradient(90deg, #14171D 1px, transparent 1px);
+  background-size:56px 56px;
+  padding:20px;
+}
+.kep-hely b{ font:600 14px var(--mono); letter-spacing:.18em; color:#8B9099; }
+.kep-hely span{ font:500 9.5px var(--mono); letter-spacing:.18em; color:var(--szoveg4); }
+.kartya-kep{ display:none; }                       /* csak betöltés után látszik */
+.kep-keret.kesz .kep-hely{ display:none; }         /* kész a fotó → helykitöltő el */
+.kep-keret.kesz .kartya-kep{
+  display:block; width:100%; aspect-ratio:3/2; object-fit:cover;
+  filter:grayscale(1) contrast(1.05) brightness(.9);
+  transition:filter .5s ease, transform .6s ease;
+}
+/* a fotók alaphelyzetben monokróm hangulatúak, egérrel színre kelnek */
+.kartya:hover .kep-keret.kesz .kartya-kep{ filter:grayscale(0); transform:scale(1.02); }
+
+/* adat oldal */
+.adat-oldal{
+  display:flex; flex-direction:column;
+  padding:clamp(26px, 3.5vw, 46px);
+  border-left:1px solid var(--vonal);
+}
+.adat-cimke{
+  font:600 10.5px var(--mono); letter-spacing:.2em;
+  color:var(--voros); text-transform:uppercase;
+}
+.egysoros{
+  margin:12px 0 24px; color:var(--tinta);
+  font-weight:600; font-size:19px; line-height:1.4; font-stretch:110%;
+}
+.specek{
+  margin-top:auto; border-top:1px solid var(--vonal);
+  display:grid; grid-template-columns:repeat(3, 1fr);
+}
+.spec{ padding:20px 0 6px; border-left:1px solid var(--vonal); padding-left:18px; }
+.spec:first-child{ border-left:0; padding-left:0; }
+.spec b{
+  display:block; font:600 clamp(24px, 2.4vw, 32px)/1 var(--mono);
+  letter-spacing:-.03em; color:var(--tinta);
+}
+.spec span{
+  display:block; margin-top:9px;
+  font:500 9.5px var(--mono); letter-spacing:.14em; color:var(--szoveg3);
+}
+
+/* a "Részletek" gomb */
+.reszlet-gomb{
+  margin-top:26px; width:100%;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:16px 20px; background:transparent;
+  border:1px solid var(--vonal2); border-radius:4px;
+  color:var(--tinta); font:600 12px var(--mono);
+  letter-spacing:.16em; text-transform:uppercase; cursor:pointer;
+  transition:border-color .25s, background .25s;
+}
+.reszlet-gomb:hover{ border-color:var(--voros); }
+.reszlet-gomb .ikon{ width:12px; height:12px; transition:transform .35s; }
+.reszlet-gomb .ikon line{ stroke:var(--voros); stroke-width:1.6; }
+.reszlet-gomb[aria-expanded="true"]{ border-color:var(--voros); background:rgba(228,0,43,.06); }
+.reszlet-gomb[aria-expanded="true"] .ikon{ transform:rotate(45deg); }  /* a +ból × lesz */
+
+/* a lenyíló leírás-panel (max-height trükk: ez adja a sima nyílást) */
+.info-panel{
+  max-height:0; overflow:hidden;
+  transition:max-height .55s cubic-bezier(.25,.8,.25,1);
+}
+.info-panel.nyitva{ max-height:760px; }
+.info-belso{ padding:22px 0 4px; }
+.info-belso > p{ color:#C4C8CF; font-size:15px; line-height:1.75; }
+.gyors-adatok{ margin-top:22px; border-top:1px solid var(--vonal); }
+.gyors-adatok > div{
+  display:grid; grid-template-columns:150px 1fr; gap:12px;
+  padding:11px 0; border-bottom:1px solid var(--vonal);
+}
+.gyors-adatok dt{
+  font:500 10px var(--mono); letter-spacing:.16em;
+  color:var(--szoveg3); text-transform:uppercase; padding-top:3px;
+}
+.gyors-adatok dd{ font-size:14.5px; color:var(--tinta); }
+
+/* ==========================================================
+   5. ÖSSZEHASONLÍTÓ TÁBLÁZAT
+   ========================================================== */
+.tablazat-csomagolo{
+  border:1px solid var(--vonal); border-radius:6px;
+  background:var(--felulet); overflow-x:auto;
+}
+table{ width:100%; min-width:780px; border-collapse:collapse; }
+th, td{ padding:16px 18px; text-align:left; vertical-align:top; border-bottom:1px solid var(--vonal); }
+thead th{ font:600 11px var(--mono); letter-spacing:.16em; color:var(--szoveg3); border-bottom:1px solid var(--vonal2); }
+thead .elso-modell{ color:var(--tinta); }
+tbody th{
+  width:190px; font:500 10.5px var(--mono);
+  letter-spacing:.14em; color:var(--szoveg3); text-transform:uppercase;
+}
+tbody td{ font:500 14px var(--mono); color:var(--tinta); }
+tbody tr:hover{ background:#141820; }
+tbody tr:last-child th, tbody tr:last-child td{ border-bottom:0; }
+td.legjobb{ color:var(--voros); font-weight:600; }
+.tablazat-megjegyzes{ margin-top:14px; font-size:12.5px; line-height:1.7; color:var(--szoveg4); }
+
+/* ==========================================================
+   6. LÁBLÉC
+   ========================================================== */
+.lablec{ border-top:1px solid var(--vonal); background:var(--felulet2); margin-top:40px; }
+.lablec-belso{ max-width:var(--maxw); margin:0 auto; padding:36px var(--oldal) 0; }
+.lablec-linkek{ display:flex; flex-wrap:wrap; gap:16px clamp(22px, 3vw, 46px); padding-bottom:32px; }
+.lablec-linkek a{
+  position:relative; text-decoration:none;
+  font:600 12px var(--mono); letter-spacing:.14em; color:#C9CDD4;
+  padding:6px 0; transition:color .2s;
+}
+.lablec-linkek a i{ font-style:normal; color:var(--voros); margin-right:8px; }
+.lablec-linkek a::after{
+  content:""; position:absolute; left:0; bottom:0; width:100%; height:1px;
+  background:var(--voros); transform:scaleX(0); transform-origin:left; transition:transform .3s;
+}
+.lablec-linkek a:hover{ color:#fff; }
+.lablec-linkek a:hover::after{ transform:scaleX(1); }
+.lablec-also{
+  display:flex; flex-wrap:wrap; gap:14px 24px;
+  justify-content:space-between; align-items:center;
+  padding:22px 0 26px; border-top:1px solid var(--vonal);
+  font:500 11.5px var(--mono); letter-spacing:.12em; color:var(--szoveg3);
+}
+.vissza{
+  display:inline-flex; align-items:center; gap:10px;
+  color:#C9CDD4; text-decoration:none; transition:color .2s;
+}
+.vissza svg{ width:12px; height:14px; fill:none; stroke:currentColor; stroke-width:1.6; }
+.vissza:hover{ color:var(--voros); }
+
+/* ==========================================================
+   7. BEJÁRÓ ANIMÁCIÓ
+   ========================================================== */
+.becsuszik{ animation:becsuszik .8s cubic-bezier(.2,.7,.25,1) both; }
+.d1{ animation-delay:.1s; } .d2{ animation-delay:.22s; }
+.d3{ animation-delay:.34s; } .d4{ animation-delay:.46s; }
+@keyframes becsuszik{ from{ opacity:0; transform:translateY(26px); } }
+
+/* ==========================================================
+   8. RESPONZÍV
+   ========================================================== */
+@media(max-width:900px){
+  .nav-links{
+    display:none; position:fixed; top:64px; left:0; right:0; z-index:49;
+    flex-direction:column; padding:10px 0 16px;
+    background:rgba(12,13,16,.97);
+    backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--vonal);
+  }
+  .nav-links.nyitva{ display:flex; }
+  .nav-links a{ padding:15px var(--oldal); border-top:1px solid #17191E; }
+  .nav-links a::after{ display:none; }
+  .hamburger{ display:flex; }
+  .fejlec-cimke{ display:none; }
+  .logo-szoveg{ font-size:11px; letter-spacing:.14em; }
+}
+@media(max-width:980px){
+  .kartya{ grid-template-columns:1fr; }
+  .forditott .abra-oldal{ order:0; }
+  .adat-oldal{ border-left:0 !important; border-right:0 !important; border-top:1px solid var(--vonal); }
+}
+@media(max-width:640px){
+  .hero-vezeto{ flex-direction:column; align-items:flex-start; gap:22px; }
+  .specek{ grid-template-columns:repeat(3, 1fr); }
+  .spec{ padding-left:12px; }
+  .spec b{ font-size:22px; }
+  .spec span{ font-size:8.5px; letter-spacing:.1em; }
+  .modell-fejlec{ flex-wrap:wrap; }
+}
+
+/* csökkentett mozgás esetén minden animáció kikapcsol */
+@media(prefers-reduced-motion: reduce){
+  *{ animation:none !important; transition:none !important; }
+  html{ scroll-behavior:auto; }
+}
+</style>
+</head>
+
+<body id="top">
+
+<!-- ================= NAVBÁR ================= -->
+<nav class="nav">
+  <div class="nav-belso">
+    <a class="logo" href="#top" aria-label="Vissza az oldal tetejére">
+      <svg class="gyuruk" viewBox="0 0 48 16" width="46" height="16" aria-hidden="true">
+        <circle cx="7.5"  cy="8" r="6.6"/>
+        <circle cx="18.5" cy="8" r="6.6"/>
+        <circle cx="29.5" cy="8" r="6.6"/>
+        <circle cx="40.5" cy="8" r="6.6"/>
+      </svg>
+      <span class="logo-szoveg">AUDI MODELLARCHÍVUM</span>
+    </a>
+    <div class="nav-jobb">
+      <div class="nav-links" id="nav-links">
+        <a href="#rs"><i>01</i>RS6 AVANT</a>
+        <a href="#q5"><i>02</i>Q5</a>
+        <a href="#a5"><i>03</i>A5</a>
+        <a href="#merleg"><i>04</i>ÖSSZEHASONLÍTÁS</a>
+      </div>
+      <button class="hamburger" id="hamburger" onclick="menuValtas()" aria-label="Menü nyitása / zárása" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header class="hero">
+  <div class="hero-teto">
+    <p class="kicker becsuszik">AUDI MODELLARCHÍVUM <span class="v">/</span> 2025 <span class="v">/</span> RS · Q · A</p>
+    <h1>
+      <span class="h1-sor becsuszik d1">A LEGÚJABB</span>
+      <span class="h1-sor voros-sor becsuszik d2">AUDI MODELLEK</span>
+    </h1>
+    <div class="hero-vezeto becsuszik d3">
+      <p class="hero-szoveg">
+        Három frissen bemutatott Audi egyetlen oldalon: a V8-as biturbós RS6 Avant
+        Performance, a vadonatúj Q5 és a megújult A5 — mindegyik benzines vagy dízel
+        hajtáslánccal. Nézd végig a modelleket, nyisd ki a részleteket, majd hasonlítsd
+        össze őket egy táblázatban.
+      </p>
+      <div class="hero-akciok">
+        <a href="#rs" class="gomb gomb-elso">Modellek megtekintése
+          <svg viewBox="0 0 16 12" aria-hidden="true"><path d="M1 6h12M9 2l4 4-4 4"/></svg>
+        </a>
+        <a href="#merleg" class="gomb gomb-masodik">Összehasonlítás</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- futószalag -->
+  <div class="futo-sav" aria-hidden="true">
+    <div class="futo-tartalom">
+      <div class="futo-csoport">
+        <span>RS6 AVANT PERFORMANCE</span><b>/</b>
+        <span>630 LE · V8 BITURBO</span><b>/</b>
+        <span>Q5 · PPC PLATFORM</span><b>/</b>
+        <span>A5 · MHEV PLUSZ</span><b>/</b>
+        <span>BENZINES ÉS DÍZEL MOTOROK</span><b>/</b>
+        <span>QUATTRO HAJTÁS</span><b>/</b>
+        <span>AUDI MODELLARCHÍVUM 2025</span><b>/</b>
+      </div>
+      <div class="futo-csoport">
+        <span>RS6 AVANT PERFORMANCE</span><b>/</b>
+        <span>630 LE · V8 BITURBO</span><b>/</b>
+        <span>Q5 · PPC PLATFORM</span><b>/</b>
+        <span>A5 · MHEV PLUSZ</span><b>/</b>
+        <span>BENZINES ÉS DÍZEL MOTOROK</span><b>/</b>
+        <span>QUATTRO HAJTÁS</span><b>/</b>
+        <span>AUDI MODELLARCHÍVUM 2025</span><b>/</b>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- ================= 01 · RS6 AVANT PERFORMANCE ================= -->
+  <section class="modell" id="rs">
+    <header class="modell-fejlec">
+      <span class="sorszam">01</span>
+      <div class="modell-cim">
+        <h2>RS6 Avant <em>Performance</em></h2>
+        <p>Az eddigi legerősebb benzines RS — V8-as biturbóval.</p>
+      </div>
+      <span class="fejlec-cimke">AUDI SPORT · BENZINES</span>
+    </header>
+
+    <article class="kartya">
+      <div class="abra-oldal">
+        <div class="sarok-fel">MOTOR · 4.0 V8 TFSI BITURBO</div>
+        <div class="sarok-xy">01</div>
+        <figure class="kep-keret">
+          <div class="kep-hely">
+            <b>RS6 AVANT PERFORMANCE</b>
+            <span>A KÉP BETÖLTÉSE FOLYAMATBAN…</span>
+          </div>
+          <img class="kartya-kep" id="kep-rs" alt="Az Audi RS6 Avant Performance fotója">
+        </figure>
+        <div class="sarok-al">HOSSZ 4 995 MM · TENGELYTÁV 2 925 MM · FOTÓ: WIKIMEDIA COMMONS</div>
+      </div>
+
+      <div class="adat-oldal">
+        <p class="adat-cimke">Audi Sport · V8 biturbo</p>
+        <p class="egysoros">4,0 literes V8-as biturbo, 630 lóerő — kombi karosszériában.</p>
+
+        <div class="specek">
+          <div class="spec"><b>630</b><span>LE · TELJESÍTMÉNY</span></div>
+          <div class="spec"><b>3,3</b><span>MP · 0–100 KM/H</span></div>
+          <div class="spec"><b>280</b><span>KM/H · VÉGSEBESSÉG</span></div>
+        </div>
+
+        <button class="reszlet-gomb" onclick="toggleInfo('rs-info', this)" aria-expanded="false" aria-controls="rs-info">
+          <span class="gomb-szoveg">Részletek</span>
+          <svg class="ikon" viewBox="0 0 12 12" aria-hidden="true"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg>
+        </button>
+
+        <div class="info-panel" id="rs-info">
+          <div class="info-belso">
+            <p>
+              Az RS6 Avant Performance az Audi Sport klasszikus csúcskombija. A 4,0 literes,
+              biturbós V8-as benzines motor 630 lóerőt és 850 newtonméter nyomatékot ad le,
+              a nagy kombi így 3,3 másodperc alatt éri el a 100 km/h-t. A hengerkikapcsolás
+              és az enyhe hibrid rendszer (MHEV) segít mérsékelni a fogyasztást, a quattro
+              hajtás és a sportfutómű pedig a tipikus RS-receptet adja: csomagtér a családnak,
+              szuperautós gyorsulás a vezetőnek.
+            </p>
+            <dl class="gyors-adatok">
+              <div><dt>Motor</dt><dd>4.0 V8 TFSI biturbo</dd></div>
+              <div><dt>Nyomaték</dt><dd>850 Nm</dd></div>
+              <div><dt>Váltó</dt><dd>8 fokozatú tiptronic</dd></div>
+              <div><dt>Fogyasztás</dt><dd>kb. 12,5 l / 100 km (WLTP)</dd></div>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <!-- ================= 02 · Q5 ================= -->
+  <section class="modell forditott" id="q5">
+    <header class="modell-fejlec">
+      <span class="sorszam">02</span>
+      <div class="modell-cim">
+        <h2>Q5</h2>
+        <p>A vadonatúj prémium SUV — benzines és dízel motorokkal.</p>
+      </div>
+      <span class="fejlec-cimke">PRÉMIUM SUV · BENZIN / DÍZEL</span>
+    </header>
+
+    <article class="kartya">
+      <div class="abra-oldal">
+        <div class="sarok-fel">MOTOR · 2.0 TFSI — MHEV PLUSZ</div>
+        <div class="sarok-xy">02</div>
+        <figure class="kep-keret">
+          <div class="kep-hely">
+            <b>Q5</b>
+            <span>A KÉP BETÖLTÉSE FOLYAMATBAN…</span>
+          </div>
+          <img class="kartya-kep" id="kep-q5" alt="Az új Audi Q5 fotója">
+        </figure>
+        <div class="sarok-al">HOSSZ ≈ 4 720 MM · TENGELYTÁV ≈ 2 880 MM · FOTÓ: WIKIMEDIA COMMONS</div>
+      </div>
+
+      <div class="adat-oldal">
+        <p class="adat-cimke">PPC platform · benzines</p>
+        <p class="egysoros">Vadonatúj prémium SUV, benzines és dízel motorokkal.</p>
+
+        <div class="specek">
+          <div class="spec"><b>204</b><span>LE · TELJESÍTMÉNY</span></div>
+          <div class="spec"><b>7,5</b><span>MP · 0–100 KM/H</span></div>
+          <div class="spec"><b>225</b><span>KM/H · VÉGSEBESSÉG</span></div>
+        </div>
+
+        <button class="reszlet-gomb" onclick="toggleInfo('q5-info', this)" aria-expanded="false" aria-controls="q5-info">
+          <span class="gomb-szoveg">Részletek</span>
+          <svg class="ikon" viewBox="0 0 12 12" aria-hidden="true"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg>
+        </button>
+
+        <div class="info-panel" id="q5-info">
+          <div class="info-belso">
+            <p>
+              A Q5 a legújabb generációja az Audi legnépszerűbb SUV-jának: az A5-tel közös
+              PPC platformra épül, és kizárólag benzines és dízel (TDI) erőforrásokkal
+              kapható. A 2.0 TFSI benzines motor 204 lóerőt ad le, enyhe hibrid rendszerrel
+              (MHEV plusz) kombinálva, quattro hajtással és hétfokozatú S tronic váltóval.
+              A belső tér a vezető felé döntött műszerfallal és nagy OLED-kijelzővel teljesen
+              új, digitális hangulatú — miközben a motorháztető alatt klasszikus, belső égésű
+              erőforrás dolgozik.
+            </p>
+            <dl class="gyors-adatok">
+              <div><dt>Motor</dt><dd>2.0 TFSI · MHEV plusz</dd></div>
+              <div><dt>Váltó</dt><dd>7 fokozatú S tronic</dd></div>
+              <div><dt>Hajtás</dt><dd>quattro — összkerék</dd></div>
+              <div><dt>Fogyasztás</dt><dd>kb. 7,5 l / 100 km (WLTP)</dd></div>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <!-- ================= 03 · A5 ================= -->
+  <section class="modell" id="a5">
+    <header class="modell-fejlec">
+      <span class="sorszam">03</span>
+      <div class="modell-cim">
+        <h2>A5</h2>
+        <p>A megújult A5: új dizájn, új platform, enyhe hibrid technika.</p>
+      </div>
+      <span class="fejlec-cimke">KOMPAKT SEDÁN · BENZINES</span>
+    </header>
+
+    <article class="kartya">
+      <div class="abra-oldal">
+        <div class="sarok-fel">MOTOR · 2.0 TFSI — MHEV PLUSZ</div>
+        <div class="sarok-xy">03</div>
+        <figure class="kep-keret">
+          <div class="kep-hely">
+            <b>A5</b>
+            <span>A KÉP BETÖLTÉSE FOLYAMATBAN…</span>
+          </div>
+          <img class="kartya-kep" id="kep-a5" alt="Az új Audi A5 fotója">
+        </figure>
+        <div class="sarok-al">HOSSZ ≈ 4 800 MM · TENGELYTÁV 2 899 MM · FOTÓ: WIKIMEDIA COMMONS</div>
+      </div>
+
+      <div class="adat-oldal">
+        <p class="adat-cimke">PPC platform · benzines</p>
+        <p class="egysoros">Új karosszéria, új platform, finomított hibrid technika.</p>
+
+        <div class="specek">
+          <div class="spec"><b>204</b><span>LE · TELJESÍTMÉNY</span></div>
+          <div class="spec"><b>7,4</b><span>MP · 0–100 KM/H</span></div>
+          <div class="spec"><b>240</b><span>KM/H · VÉGSEBESSÉG</span></div>
+        </div>
+
+        <button class="reszlet-gomb" onclick="toggleInfo('a5-info', this)" aria-expanded="false" aria-controls="a5-info">
+          <span class="gomb-szoveg">Részletek</span>
+          <svg class="ikon" viewBox="0 0 12 12" aria-hidden="true"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg>
+        </button>
+
+        <div class="info-panel" id="a5-info">
+          <div class="info-belso">
+            <p>
+              A megújult A5 lett az Audi új formanyelvének első benzines képviselője: a korábbi
+              A4 méretosztályában helyezkedik el, ám a hagyományos szedán helyett folyamatos
+              vonalvezetésű, ferde hátú karosszériát kapott. Az új PPC platformon épül, a
+              2.0 TFSI benzines motor pedig MHEV plusz enyhe hibrid rendszerrel dolgozik
+              együtt. Az utastér digitális műszeregységet és vezető felé döntött kialakítást
+              kapott — az A5 így egyszerre klasszikus és határozottan korszerű.
+            </p>
+            <dl class="gyors-adatok">
+              <div><dt>Motor</dt><dd>2.0 TFSI + MHEV plusz</dd></div>
+              <div><dt>Váltó</dt><dd>7 fokozatú S tronic</dd></div>
+              <div><dt>Karosszéria</dt><dd>ferde hátú, PPC platform</dd></div>
+              <div><dt>Fogyasztás</dt><dd>kb. 6,1 l / 100 km (WLTP)</dd></div>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <!-- ================= 04 · ÖSSZEHASONLÍTÁS ================= -->
+  <section class="modell" id="merleg">
+    <header class="modell-fejlec">
+      <span class="sorszam">04</span>
+      <div class="modell-cim">
+        <h2>Egymás <em>mellé</em></h2>
+        <p>A három modell legfontosabb gyári adatai, egy táblázatban.</p>
+      </div>
+      <span class="fejlec-cimke">ADATLAP · WLTP</span>
+    </header>
+
+    <div class="tablazat-csomagolo">
+      <table>
+        <thead>
+          <tr>
+            <th>ADATLAP</th>
+            <th class="elso-modell">RS6 AVANT PERFORMANCE</th>
+            <th>Q5</th>
+            <th>A5</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><th>Motor</th><td>4.0 V8 TFSI</td><td>2.0 TFSI</td><td>2.0 TFSI</td></tr>
+          <tr><th>Teljesítmény</th><td class="legjobb">630 LE</td><td>204 LE</td><td>204 LE</td></tr>
+          <tr><th>Gyorsulás · 0–100</th><td class="legjobb">3,3 mp</td><td>7,5 mp</td><td>7,4 mp</td></tr>
+          <tr><th>Végsebesség</th><td class="legjobb">280 km/h</td><td>225 km/h</td><td>240 km/h</td></tr>
+          <tr><th>Hajtás</th><td>quattro · összkerék</td><td>quattro · összkerék</td><td>Előkerék · quattro opció</td></tr>
+          <tr><th>Váltó</th><td>8 fokozatú tiptronic</td><td>7 fokozatú S tronic</td><td>7 fokozatú S tronic</td></tr>
+          <tr><th>Fogyasztás · WLTP</th><td>≈ 12,5 l/100 km</td><td>≈ 7,5 l/100 km</td><td class="legjobb">≈ 6,1 l/100 km</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="tablazat-megjegyzes">
+      A piros érték az adott sor legjobb eredménye. Az adatok gyári, WLTP szerinti
+      tájékoztató értékek, amelyek a felszereléstől függően változhatnak.
+    </p>
+  </section>
+</main>
+
+<!-- ================= LÁBLÉC ================= -->
+<footer class="lablec">
+  <div class="lablec-belso">
+    <nav class="lablec-linkek" aria-label="Lábléc navigáció">
+      <a href="#rs"><i>01</i>RS6 AVANT PERFORMANCE</a>
+      <a href="#q5"><i>02</i>Q5</a>
+      <a href="#a5"><i>03</i>A5</a>
+      <a href="#merleg"><i>04</i>ÖSSZEHASONLÍTÁS</a>
+    </nav>
+    <div class="lablec-also">
+      <p>© <span id="ev">2025</span> KOVÁCS EDUÁRD — MINDEN JOG FENNTARTVA.</p>
+      <a href="#top" class="vissza">
+        <span>VISSZA A TETEJÉRE</span>
+        <svg viewBox="0 0 12 14" aria-hidden="true"><path d="M6 13V1M1.5 6L6 1l4.5 5"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   AUDI MODELLARCHÍVUM — egyszerű JavaScript
+   1) A "Részletek" gomb kinyitja / becsukja a kártya leírását
+   2) A hamburger gomb megnyitja / bezárja a mobil menüt
+   3) Az aktuális évszám automatikusan a láblécbe kerül
+   4) Az autók igazi fotói a Wikipédia szabad képtárából
+   ============================================================ */
+
+/* ---------- 1) Részletek-panel nyitása / zárása ---------- */
+function toggleInfo(panelId, gomb) {
+  var panel = document.getElementById(panelId);
+  if (panel.classList.contains('nyitva')) {          // ha nyitva van → becsukjuk
+    panel.classList.remove('nyitva');
+    gomb.setAttribute('aria-expanded', 'false');
+    gomb.querySelector('.gomb-szoveg').textContent = 'Részletek';
+  } else {                                           // ha zárva van → kinyitjuk
+    panel.classList.add('nyitva');
+    gomb.setAttribute('aria-expanded', 'true');
+    gomb.querySelector('.gomb-szoveg').textContent = 'Kevesebb';
+  }
+}
+
+/* ---------- 2) Mobil menü nyitása / zárása ---------- */
+function menuValtas() {
+  var menu = document.getElementById('nav-links');
+  var gomb = document.getElementById('hamburger');
+  if (menu.classList.contains('nyitva')) {           // becsukás
+    menu.classList.remove('nyitva');
+    gomb.classList.remove('aktiv');
+    gomb.setAttribute('aria-expanded', 'false');
+  } else {                                           // kinyitás
+    menu.classList.add('nyitva');
+    gomb.classList.add('aktiv');
+    gomb.setAttribute('aria-expanded', 'true');
+  }
+}
+
+/* Ha a mobil menüben egy linkre kattintunk, a menü záródjon be */
+document.querySelectorAll('.nav-links a').forEach(function (link) {
+  link.addEventListener('click', function () {
+    document.getElementById('nav-links').classList.remove('nyitva');
+    document.getElementById('hamburger').classList.remove('aktiv');
+  });
+});
+
+/* ---------- 3) Aktuális évszám a láblécbe ---------- */
+document.getElementById('ev').textContent = new Date().getFullYear();
+
+/* ---------- 4) Az autók fotói a Wikipédiáról ----------
+   A Wikipédia nyílt API-járól letöltjük mindhárom modell
+   szócikkének fő képét (szabadon felhasználható fotó),
+   és a betöltés után a helykitöltő helyére kerül.        */
+function kepekBetoltese() {
+  var url = 'https://en.wikipedia.org/w/api.php?action=query&format=json&formatversion=2'
+          + '&origin=*&prop=pageimages&piprop=thumbnail&pithumbsize=1200'
+          + '&titles=Audi%20RS%206%7CAudi%20Q5%7CAudi%20A5';
+
+  /* melyik szócikk képe melyik <img> helyre kerüljön */
+  var hova = { 'Audi RS 6': 'kep-rs', 'Audi Q5': 'kep-q5', 'Audi A5': 'kep-a5' };
+
+  fetch(url)
+    .then(function (valasz) { return valasz.json(); })      // válasz → adat
+    .then(function (adat) {
+      adat.query.pages.forEach(function (oldal) {
+        var kep = document.getElementById(hova[oldal.title]);
+        if (kep && oldal.thumbnail) {
+          kep.addEventListener('load', function () {        // ha megjött a fotó…
+            kep.closest('.kep-keret').classList.add('kesz'); // …helykitöltő el, kép elő
+          });
+          kep.src = oldal.thumbnail.source;
+        }
+      });
+    })
+    .catch(function () {
+      /* nincs internet vagy nem sikerült → marad a feliratozott helykitöltő */
+    });
+}
+kepekBetoltese();
+</script>
+
+</body>
+</html>
