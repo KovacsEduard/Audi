@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AUDI MODELLARCHÍVUM — RS6, Q5, A5 | Kovács Eduárd</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body id="top">
+
+    <!-- MENÜBAR -->
+    <nav>
+        <div class="nav-tartalom">
+            <div class="logo">AUDI <span>MODELLARCHÍVUM</span></div>
+            <div class="nav-linkek">
+                <a href="#rs">01. RS6 AVANT</a>
+                <a href="#q5">02. Q5</a>
+                <a href="#a5">03. A5</a>
+                <a href="#merleg">04. ÖSSZEHASONLÍTÁS</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SZEKCIÓ -->
+    <header class="hero">
+        <h1>A LEGÚJABB <span>AUDI MODELLEK</span></h1>
+        <p>
+            Három frissen bemutatott Audi egyetlen oldalon: a V8-as biturbós RS6 Avant Performance, 
+            a vadonatúj Q5 és a megújult A5. Kattints a részletek gombra az extra infókért!
+        </p>
+        <div class="hero-gombok">
+            <a href="#rs">Modellek megtekintése</a>
+            <a href="#merleg" class="masodik">Összehasonlítás</a>
+        </div>
+    </header>
+
+    <!-- TARTALOM -->
+    <main>
+
+        <!-- 01. RS6 AVANT -->
+        <section class="modell-szekcio" id="rs">
+            <div class="modell-fejlec">
+                <h2>01. RS6 Avant Performance</h2>
+                <p>Az eddigi legerősebb benzines RS — V8-as biturbóval.</p>
+            </div>
+            <div class="modell-tartalom">
+                <div class="modell-kep-doboz">
+                    <img src="img/RS6AvantPerformance.jpg" alt="Audi RS6 Avant">
+                </div>
+                <div class="modell-adatok">
+                    <p><strong>Motor:</strong> 4.0 literes V8 TFSI biturbo</p>
+                    <p>4,0 literes V8-as biturbo, 630 lóerő — kombi karosszériában.</p>
+                    
+                    <div class="fobb-adatok">
+                        <div><strong>Teljesítmény:</strong> 630 LE</div>
+                        <div><strong>0-100 km/h:</strong> 3,3 másodperc</div>
+                        <div><strong>Végsebesség:</strong> 280 km/h</div>
+                    </div>
+
+                    <!-- EGYSZERŰ JS NYITÁS/ZÁRÁS -->
+                    <button class="reszletek-gomb" onclick="mutatElrejti('rs-info')">Részletek megjelenítése / elrejtése</button>
+                    
+                    <div id="rs-info" class="reszletek-panel">
+                        <p>
+                            Az RS6 Avant Performance az Audi Sport klasszikus csúcskombija. A 4,0 literes, 
+                            biturbós V8-as benzines motor 630 lóerőt és 850 Nm nyomatékot ad le. 
+                            Nyolcfokozatú tiptronic váltóval és quattro összkerékhajtással rendelkezik.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 02. Q5 -->
+        <section class="modell-szekcio" id="q5">
+            <div class="modell-fejlec">
+                <h2>02. Audi Q5</h2>
+                <p>A vadonatúj prémium SUV — benzines és dízel motorokkal.</p>
+            </div>
+            <div class="modell-tartalom">
+                <div class="modell-kep-doboz">
+                    <img src="img/Q5.webp" alt="Audi Q5">
+                </div>
+                <div class="modell-adatok">
+                    <p><strong>Motor:</strong> 2.0 TFSI — MHEV plusz</p>
+                    <p>Vadonatúj prémium SUV, benzines és dízel motorokkal.</p>
+                    
+                    <div class="fobb-adatok">
+                        <div><strong>Teljesítmény:</strong> 204 LE</div>
+                        <div><strong>0-100 km/h:</strong> 7,5 másodperc</div>
+                        <div><strong>Végsebesség:</strong> 225 km/h</div>
+                    </div>
+
+                    <button class="reszletek-gomb" onclick="mutatElrejti('q5-info')">Részletek megjelenítése / elrejtése</button>
+                    
+                    <div id="q5-info" class="reszletek-panel">
+                        <p>
+                            A Q5 a legújabb generációja az Audi legnépszerűbb SUV-jának. 
+                            A 2.0 TFSI benzines motor 204 lóerőt ad le, enyhe hibrid rendszerrel kombinálva, 
+                            quattro hajtással és hétfokozatú S tronic váltóval.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 03. A5 -->
+        <section class="modell-szekcio" id="a5">
+            <div class="modell-fejlec">
+                <h2>03. Audi A5</h2>
+                <p>A megújult A5: új dizájn, új platform, enyhe hibrid technika.</p>
+            </div>
+            <div class="modell-tartalom">
+                <div class="modell-kep-doboz">
+                    <img src="img/A5.jpg" alt="Audi A5">
+                </div>
+                <div class="modell-adatok">
+                    <p><strong>Motor:</strong> 2.0 TFSI — MHEV plusz</p>
+                    <p>Új karosszéria, új platform, finomított hibrid technika.</p>
+                    
+                    <div class="fobb-adatok">
+                        <div><strong>Teljesítmény:</strong> 204 LE</div>
+                        <div><strong>0-100 km/h:</strong> 7,4 másodperc</div>
+                        <div><strong>Végsebesség:</strong> 240 km/h</div>
+                    </div>
+
+                    <button class="reszletek-gomb" onclick="mutatElrejti('a5-info')">Részletek megjelenítése / elrejtése</button>
+                    
+                    <div id="a5-info" class="reszletek-panel">
+                        <p>
+                            A megújult A5 az Audi új formanyelvét képviseli. A 2.0 TFSI benzines 
+                            motor MHEV plusz enyhe hibrid rendszerrel dolgozik együtt, dinamikus 
+                            és takarékos vezetési élményt nyújtva.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ÖSSZEHASONLÍTÓ TÁBLÁZAT -->
+        <section class="tablazat-szekcio" id="merleg">
+            <h2>Összehasonlítás</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ADATLAP</th>
+                        <th>RS6 AVANT PERFORMANCE</th>
+                        <th>Q5</th>
+                        <th>A5</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Motor</strong></td>
+                        <td>4.0 V8 TFSI</td>
+                        <td>2.0 TFSI</td>
+                        <td>2.0 TFSI</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Teljesítmény</strong></td>
+                        <td class="kiemelt">630 LE</td>
+                        <td>204 LE</td>
+                        <td>204 LE</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Gyorsulás (0-100)</strong></td>
+                        <td class="kiemelt">3,3 mp</td>
+                        <td>7,5 mp</td>
+                        <td>7,4 mp</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Végsebesség</strong></td>
+                        <td class="kiemelt">280 km/h</td>
+                        <td>225 km/h</td>
+                        <td>240 km/h</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Hajtás</strong></td>
+                        <td>quattro összkerék</td>
+                        <td>quattro összkerék</td>
+                        <td>Elsőkerék / quattro</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Váltó</strong></td>
+                        <td>8 fokozatú tiptronic</td>
+                        <td>7 fokozatú S tronic</td>
+                        <td>7 fokozatú S tronic</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+    </main>
+
+    <!-- LÁBLÉC -->
+    <footer>
+        <p>© Kovács Eduárd — Minden jog fenntartva.</p>
+        <p><a href="#top">Vissza a tetejére ↑</a></p>
+    </footer>
+
+    <script type="text/javascript" src="openClose.js"></script>
+    
+</body>
+</html>
